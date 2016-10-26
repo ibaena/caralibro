@@ -27,3 +27,5 @@ kadira:flow-router
 kadira:react-layout
 fortawesome:fontawesome
 momentjs:moment
+fourseven:scss
+session
