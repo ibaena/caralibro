@@ -8,7 +8,7 @@ Layout = React.createClass({
       <div className="wrapper">
         <div className="box">
           <div className="srow row-offcanvas row-offcanvas-left push-down-50">
-            Navbar
+            <Navbar />
             {this.props.sidebar}
             {this.props.content}
           </div>

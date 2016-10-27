@@ -41,9 +41,9 @@ Signupform = React.createClass({
       if(e){
         FlowRouter.go('/');
         that.displayError(e.reason);
-      }
+      }else{
       FlowRouter.go('/dashboard');
-
+      }
     })
   },
   render(){
