@@ -18,8 +18,8 @@ privateRoutes.route('/dashboard',{
   name:'Dashboard',
   action(){
     mount(Layout,{
-      sidebar:<div>SideBar</div>,
-      content:<div>Content</div>
+      sidebar:<Sidebar />,
+    content: <Main />
     })
   }
 });
