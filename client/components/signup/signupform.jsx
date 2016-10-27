@@ -1,8 +1,51 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { mount } from 'react-mounter';
 
 Signupform = React.createClass({
+  mixins:[ReactMeteorData],
+  getMeteorData(){
+    let data = {};
+      data.currentUser = Meteor.user();
+      return data;
+  },
+  getInitialState(){
+    return {
+      message:'',
+      messageClass:''
+    }
+  },
+  displayError(message){
+    this.setState({message:message,messageClass:'alert alert-danger registerError'})
+  },
+  handleSubmit(e){
+    e.preventDefault();
+    this.setState({message:'',messageClass:'hidden'});
+    var that = this;
+    var first_name = ReactDOM.findDOMNode(this.refs.first_name).value.trim();
+    var last_name = ReactDOM.findDOMNode(this.refs.last_name).value.trim();
+    var email = ReactDOM.findDOMNode(this.refs.email).value.trim();
+    var password = ReactDOM.findDOMNode(this.refs.password).value.trim();
+    var user = {
+      email:email,
+      password:password,
+      profile:{
+        fullname:(first_name + last_name).toLowerCase(),
+        firstname:first_name,
+        lastname:last_name,
+        avatar:'http://placehold.it/150x150',
+        friends: []
+      }}
+    Accounts.createUser(user, function(e){
+      if(e){
+        FlowRouter.go('/');
+        that.displayError(e.reason);
+      }
+      FlowRouter.go('/dashboard');
+
+    })
+  },
   render(){
     return (
       <div className="row">
@@ -12,7 +55,7 @@ Signupform = React.createClass({
               It's free and always will be.
             </p>
         </div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="col-sm-9">
             <div className="row">
               <div className="col-sm-6 form-group">
@@ -29,6 +72,7 @@ Signupform = React.createClass({
               </div>
               <div className="col-sm-12 form-group">
                 <button type="submit" className="btn btn-md btn-success">Sign Up</button>
+                <span className={this.state.messageClass}>{this.state.message}</span>
               </div>
             </div>
           </div>
