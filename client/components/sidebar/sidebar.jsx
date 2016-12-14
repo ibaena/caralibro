@@ -19,7 +19,7 @@ Sidebar = React.createClass({
           </a>
         </li>
       )
-    })
+    });
     return (
       <div className="column col-sm-2 col-xs-1 sidebar-offcanvas">
         <ul className="nav">

@@ -39,7 +39,7 @@ Post = React.createClass({
               <a href="#" className="btn btn-default stat-item">
                 <i className="fa fa-thumbs-up icon"></i>
               </a>&nbsp;
-              10 likes!
+              10 likes!2
             </div>
             <div className="post-footer">
               Comments List
