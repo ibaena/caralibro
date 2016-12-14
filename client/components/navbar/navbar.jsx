@@ -10,7 +10,7 @@ Navbar = React.createClass({
     return data;
   },
   componentDidMount(){
-    var users = Meteor.users.find({}, (fields:{profile:1})).fetch();
+    var users = Meteor.users.find({}, {fields:{profile:1}}).fetch();
     var usernames = [];
     users.map(function(user){
       usernames.push(user.profile.fullname);

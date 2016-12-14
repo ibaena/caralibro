@@ -28,6 +28,16 @@ privateRoutes.route('/dashboard',{
     })
   }
 });
+privateRoutes.route('/profile',{
+  name:'Profile',
+  action: function(){
+      ReactLayout.render(Layout, {
+        sidebar:<Sidebar />,
+        content:<Profile />,
+      })
+  }
+});
+
 publicRoutes.route('/signout',{
   name:'Signout',
   action: function(){
@@ -35,5 +45,4 @@ publicRoutes.route('/signout',{
       FlowRouter.go('/');
     });
   }
-
 })
