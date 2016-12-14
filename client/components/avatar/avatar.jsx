@@ -22,7 +22,6 @@ Avatar = React.createClass({
     render(){
         var avatar = this.state.avatar;
 
-console.log(this.data);
         if(this.data.img){
             avatar = this.data.img.url();
 

@@ -11,8 +11,4 @@ Images.allow({
   remove: function() {
     return true;
   },
-})
-
-Meteor.publish('imagelist',function(){
-    return Images.find();
 });

@@ -20,12 +20,12 @@ publicRoutes.route('/',{
   }
 });
 privateRoutes.route('/dashboard',{
-  name:'Dashboard',
-  action(){
-    mount(Layout,{
-      sidebar:<Sidebar />,
-      content: <Main />
-    })
+  name:'dashboard',
+  action: function(){
+      mount(Layout, {
+        sidebar:<Sidebar />,
+        content:<Main />,
+      })
   }
 });
 privateRoutes.route('/profile',{
