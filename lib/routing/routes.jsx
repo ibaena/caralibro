@@ -37,7 +37,6 @@ privateRoutes.route('/profile',{
       })
   }
 });
-
 publicRoutes.route('/signout',{
   name:'Signout',
   action: function(){
