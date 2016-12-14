@@ -31,7 +31,7 @@ privateRoutes.route('/dashboard',{
 privateRoutes.route('/profile',{
   name:'Profile',
   action: function(){
-      ReactLayout.render(Layout, {
+      mount(Layout, {
         sidebar:<Sidebar />,
         content:<Profile />,
       })

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'react-mounter';
+const fs = require('fs');
 
 Profile = React.createClass({
   mixins:[ReactMeteorData],
@@ -13,24 +14,26 @@ Profile = React.createClass({
     return {
       klass: 'img-circle img-responsive custom-input-file',
       editMode: false,
-      email: this.data && this.data.currentUser && this.data.currentUser.emails ? this.data.currentUser.emails[0].address:'youremail.com'
+      email: this.data && this.data.currentUser && this.data.currentUser.emails ? this.data.currentUser.emails[0].address:'youremail.com',
     }
   },
   componentDidMount(){
     this.setState({email:this.data.currentUser ? Meteor.user().emails[0].address:''});
   },
   uploadFile(e){
-    e.preventDefault();
-    var that = this;
-    var image;
-    FS.utility.eachFile(e,function(file){
-      Images.insert(file, function(err, fileObj){
-        Meteor.call('changeAvatar', Meteor.user(), fileObj._id);
-        setTimeout(function(){
-          that.setState({klass:'img-circle img-responsive custom-input-file'});
-        },100)
+      e.preventDefault();
+      var that = this;
+      var image;
+      FS.Utility.eachFile(e, function (file) {
+        console.log(file);
+          Images.insert(file, function (err, fileObj) {
+              Meteor.call('changeAvatar', Meteor.user(), fileObj._id);
+              setTimeout(function(){
+                  that.setState({klass:'img-circle img-responsive custom-input-file updated'});
+              },100)
+          });
+
       });
-    });
   },
   render(){
     return(
